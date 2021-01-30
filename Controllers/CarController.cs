@@ -10,7 +10,7 @@ namespace CarSaloonEvidence.Controllers
     [Route("api/v1/cars")]
     public class CarController : Controller
     {
-        private readonly List<Car> _cars = new List<Car>();
+        private readonly List<Car> _cars = new();
         private IEnumerable<Manufacturer> _manufacturers;
 
         public CarController()
@@ -43,10 +43,16 @@ namespace CarSaloonEvidence.Controllers
             return Ok(_cars.Where(car => car.Manufacturer.Id == manufacturerId));
         }
 
-        [HttpGet("{manufacturerId}/car-type")]
-        public IActionResult GetAllCarsTypesByManufacturerIdAndCarType(int manufacturerId, [FromQuery] int carType)
+        [HttpGet("{manufacturerId}/types/{carType}")]
+        public IActionResult GetAllCarsTypesByManufacturerIdAndCarType(int manufacturerId, int carType)
         {
             return Ok(_cars.Where(car => car.Manufacturer.Id == manufacturerId && car.CarType == (CarType)carType));
+        }
+
+        [HttpGet("{manufacturerId}/types/{carType}/released-in")]
+        public IActionResult GetAllCarsTypesByManufacturerIdAndCarTypeReleasedIn(int manufacturerId, int carType, [FromQuery] DateTime releasedIn)
+        {
+            return Ok(_cars.Where(car => car.Manufacturer.Id == manufacturerId && car.CarType == (CarType)carType && car.ReleasedIn >= releasedIn));
         }
 
         private void AddCars()
