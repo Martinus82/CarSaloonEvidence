@@ -31,13 +31,13 @@ namespace CarSaloonEvidence.Controllers
             return Ok(_manufacturers);
         }
 
-        [HttpGet("by-manufacturer-name")]
+        [HttpGet("names")]
         public IActionResult GetCarsByManufacturer([FromQuery] string brand)
         {
             return Ok(_cars.Where(car => car.BrandName == brand));
         }
 
-        [HttpGet("{manufacturerId}")]
+        [HttpGet("manufacturers/{manufacturerId}")]
         public IActionResult GetAllCarsByManufacturerId(int manufacturerId)
         {
             return Ok(_cars.Where(car => car.Manufacturer.Id == manufacturerId));
