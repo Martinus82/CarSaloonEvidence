@@ -11,7 +11,7 @@ namespace CarSaloonEvidence.Controllers
     public class CarController : Controller
     {
         private readonly List<Car> _cars = new();
-        private IEnumerable<Manufacturer> _manufacturers;
+        private readonly IEnumerable<Manufacturer> _manufacturers;
 
         public CarController()
         {
