@@ -4,10 +4,6 @@ namespace CarSaloonEvidence.Model
 {
     public class Manufacturer
     {
-        private Manufacturer()
-        {
-        }
-
         public static ICollection<Manufacturer> GetManufacturers()
         {
             return new[]
@@ -17,6 +13,10 @@ namespace CarSaloonEvidence.Model
                 new Manufacturer { Id = 3, Name = "Kia" },
                 new Manufacturer { Id = 4, Name = "Dodge" },
             };
+        }
+
+        public Manufacturer()
+        {
         }
 
         public string Name { get; init; }
